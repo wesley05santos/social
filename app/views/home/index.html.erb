@@ -1,3 +1,4 @@
-<div>
+<div id="all_articles" class="min-w-full">
+  <%= turbo_stream_from 'articles_channel' %>
   <%= render @articles %>
 </div>

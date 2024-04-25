@@ -26,6 +26,15 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        # Turbo::StreamsChannel.broadcast_action_to(
+        #   'articles_channel',
+        #   action: :prepend,
+        #   target: 'all_articles',
+        #   partial: 'articles/article',
+        #   locals: {
+        #     article: @article
+        #   }
+        # )
         format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
         format.json { render :show, status: :created, location: @article }
       else
