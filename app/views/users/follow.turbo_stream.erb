@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "follow_unfollow_link_#{@target_user.id}" do %>
+  <%= render 'users/follow_unfollow_link', target_user: @target_user %>
+<% end %>

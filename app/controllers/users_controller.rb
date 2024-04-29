@@ -1,11 +1,21 @@
 class UsersController < ApplicationController
+  before_action :fetch_user
+
   def follow
-    @user_to_follow = User.find(params[:user_id])
-    current_user.followings << @user_to_follow
+    current_user.followings << @target_user
+
+    respond_to { |format| format.turbo_stream }
   end
 
   def unfollow
-    @user_to_unfollow = User.find(params[:user_id])
-    current_user.followings.delete(@user_to_unfollow)
+    current_user.followings.delete(@target_user)
+
+    respond_to { |format| format.turbo_stream }
+  end
+
+  private
+
+  def fetch_user
+    @target_user = User.find(params[:user_id])
   end
 end
