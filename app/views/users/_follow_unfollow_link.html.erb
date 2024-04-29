@@ -1,7 +1,12 @@
 <span id="follow_unfollow_link_<%= target_user.id %>">
   <% if target_user.followers.include?(current_user) %>
-    <%= link_to "Unfollow", unfollow_path(user_id: target_user.id), data: { turbo_method: :delete } %>
+    <%= link_to "𐄂", unfollow_path(user_id: target_user.id), data: { turbo_method: :delete } %>
   <% else %>
-    <%= link_to "Follow", follow_path(user_id: target_user.id), data: { turbo_method: :post } %>
+    <%= link_to "✓", follow_path(user_id: target_user.id), data: { turbo_method: :post } %>
   <% end %>
 </span>
+
+
+
+
+
