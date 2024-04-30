@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_25_214847) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_30_205243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_214847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "chats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_opening_chat_id", null: false
+    t.uuid "user_destination_chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_destination_chat_id"], name: "index_chats_on_user_destination_chat_id"
+    t.index ["user_opening_chat_id"], name: "index_chats_on_user_opening_chat_id"
   end
 
   create_table "followerships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -46,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_25_214847) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "chats", "users", column: "user_destination_chat_id"
+  add_foreign_key "chats", "users", column: "user_opening_chat_id"
   add_foreign_key "followerships", "users"
   add_foreign_key "followerships", "users", column: "following_id"
 end
