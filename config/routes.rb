@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chat_messages
   root 'home#index'
   resources :chats, only: %i[ index create show ]
   resources :articles

@@ -1,4 +1,4 @@
 class ChatMessage < ApplicationRecord
   belongs_to :chats
-  belongs_to :user_send_message
+  belongs_to :user_send_message_id
 end

@@ -2,10 +2,8 @@
 
 one:
   chats: one
-  user_send_message: one
-  content: MyText
+  user_send_message_id: one
 
 two:
   chats: two
-  user_send_message: two
-  content: MyText
+  user_send_message_id: two

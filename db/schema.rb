@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_225543) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_223301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_225543) do
   create_table "chat_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "chats_id", null: false
     t.uuid "user_send_message_id", null: false
-    t.text "content"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chats_id"], name: "index_chat_messages_on_chats_id"
