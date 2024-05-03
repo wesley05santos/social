@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :content %>
-    <%= form.text_field :content, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.hidden_field user_opening_chat_id: current_user.id %>
+    <%= form.hidden_field user_destination_chat_id: @user_destination_chat_id %>
   </div>
 
   <div class="inline">

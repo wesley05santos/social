@@ -13,7 +13,6 @@ class ChatsController < ApplicationController
 
   # GET /chats/new
   def new
-    @chat = Chat.new
   end
 
   # GET /chats/1/edit
@@ -22,8 +21,12 @@ class ChatsController < ApplicationController
 
   # POST /chats or /chats.json
   def create
-    @chat = Chat.new(chat_params)
+    @chat = Chat.find_by(user_opening_chat_id: current_user.id, user_destination_chat_id: params[:user_id])
+    @chat ||= Chat.find_by(user_opening_chat_id: params[:user_id], user_destination_chat_id: current_user.id)
+    return redirect_to @chat if @chat.present?
+    binding.break
 
+    @chat = Chat.new(user_opening_chat_id: current_user.id, user_destination_chat_id: params[:user_id])
     respond_to do |format|
       if @chat.save
         format.html { redirect_to chat_url(@chat), notice: "Chat was successfully created." }
@@ -57,6 +60,7 @@ class ChatsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

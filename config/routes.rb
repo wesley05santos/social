@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :chats
+  root 'home#index'
+  resources :chats, only: %i[ index create show ]
   resources :articles
   devise_for :users
-  root 'home#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -24,7 +24,7 @@
             </td>
             <td class="px-6 py-4">
               <div class="flex justify-between items-center">
-                <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+                <%= link_to "Chat", chats_path(user_id: user.id), data: { turbo_method: :post }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
               </div>
             </td>
           </tr>
