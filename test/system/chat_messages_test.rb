@@ -14,7 +14,7 @@ class ChatMessagesTest < ApplicationSystemTestCase
     visit chat_messages_url
     click_on "New chat message"
 
-    fill_in "Chats", with: @chat_message.chats_id
+    fill_in "Chats", with: @chat_message.chat_id
     fill_in "User send message id", with: @chat_message.user_send_message_id
     click_on "Create Chat message"
 
@@ -26,7 +26,7 @@ class ChatMessagesTest < ApplicationSystemTestCase
     visit chat_message_url(@chat_message)
     click_on "Edit this chat message", match: :first
 
-    fill_in "Chats", with: @chat_message.chats_id
+    fill_in "Chats", with: @chat_message.chat_id
     fill_in "User send message id", with: @chat_message.user_send_message_id
     click_on "Update Chat message"
 

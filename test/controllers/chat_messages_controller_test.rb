@@ -17,7 +17,7 @@ class ChatMessagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create chat_message" do
     assert_difference("ChatMessage.count") do
-      post chat_messages_url, params: { chat_message: { chats_id: @chat_message.chats_id, user_send_message_id: @chat_message.user_send_message_id } }
+      post chat_messages_url, params: { chat_message: { chat_id: @chat_message.chat_id, user_send_message_id: @chat_message.user_send_message_id } }
     end
 
     assert_redirected_to chat_message_url(ChatMessage.last)
@@ -34,7 +34,7 @@ class ChatMessagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update chat_message" do
-    patch chat_message_url(@chat_message), params: { chat_message: { chats_id: @chat_message.chats_id, user_send_message_id: @chat_message.user_send_message_id } }
+    patch chat_message_url(@chat_message), params: { chat_message: { chat_id: @chat_message.chat_id, user_send_message_id: @chat_message.user_send_message_id } }
     assert_redirected_to chat_message_url(@chat_message)
   end
 

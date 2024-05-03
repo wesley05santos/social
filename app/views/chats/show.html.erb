@@ -5,7 +5,10 @@
     <% end %>
 
     <%= render @chat %>
-    <%= render  "chat_messages/index" %>
+    <%= render  "chat_messages/form", chat_message: @chat.chat_messages.new() %>
+    <% @chat.chat_messages.where.not(id: nil).each do |chat_message| %>
+      <%= render  "chat_messages/chat_message", chat_message: chat_message %>
+    <% end %>
     <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

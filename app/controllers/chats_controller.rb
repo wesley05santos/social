@@ -9,6 +9,7 @@ class ChatsController < ApplicationController
 
   # GET /chats/1 or /chats/1.json
   def show
+    @other_user = @chat.other_user(current_user)
   end
 
   # GET /chats/new

@@ -25,7 +25,7 @@ class ChatMessagesController < ApplicationController
 
     respond_to do |format|
       if @chat_message.save
-        format.html { redirect_to chat_message_url(@chat_message), notice: "Chat message was successfully created." }
+        format.html { redirect_to @chat_message.chat, notice: "Chat message was successfully created." }
         format.json { render :show, status: :created, location: @chat_message }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class ChatMessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chat_message_params
-      params.require(:chat_message).permit(:chats_id, :user_send_message_id)
+      params.require(:chat_message).permit(:chat_id, :message).to_h.merge(user_send_message_id: current_user.id)
     end
 end

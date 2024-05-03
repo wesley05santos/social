@@ -11,10 +11,8 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.hidden_field user_opening_chat_id: current_user.id %>
-    <%= form.hidden_field user_destination_chat_id: @user_destination_chat_id %>
-  </div>
+  <%= form.hidden_field user_opening_chat_id: current_user.id %>
+  <%= form.hidden_field user_destination_chat_id: @user_destination_chat_id %>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

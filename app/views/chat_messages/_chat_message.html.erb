@@ -1,13 +1,14 @@
 <div id="<%= dom_id chat_message %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Chats:</strong>
-    <%= chat_message.chats_id %>
+    <strong class="block font-medium mb-1">User send message:</strong>
+    <%= chat_message.user_send_message.email %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">User send message:</strong>
-    <%= chat_message.user_send_message_id %>
+    <strong class="block font-medium mb-1">Message:</strong>
+    <%= chat_message.message %>
   </p>
+
 
   <% if action_name != "show" %>
     <%= link_to "Show this chat message", chat_message, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

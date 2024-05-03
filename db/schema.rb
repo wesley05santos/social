@@ -25,12 +25,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_223301) do
   end
 
   create_table "chat_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "chats_id", null: false
+    t.uuid "chat_id", null: false
     t.uuid "user_send_message_id", null: false
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chats_id"], name: "index_chat_messages_on_chats_id"
+    t.index ["chat_id"], name: "index_chat_messages_on_chat_id"
     t.index ["user_send_message_id"], name: "index_chat_messages_on_user_send_message_id"
   end
 
@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_223301) do
   end
 
   add_foreign_key "articles", "users"
-  add_foreign_key "chat_messages", "chats", column: "chats_id"
+  add_foreign_key "chat_messages", "chats"
   add_foreign_key "chat_messages", "users", column: "user_send_message_id"
   add_foreign_key "chats", "users", column: "user_destination_chat_id"
   add_foreign_key "chats", "users", column: "user_opening_chat_id"
