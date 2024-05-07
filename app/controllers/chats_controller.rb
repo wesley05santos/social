@@ -25,7 +25,6 @@ class ChatsController < ApplicationController
     @chat = Chat.find_by(user_opening_chat_id: current_user.id, user_destination_chat_id: params[:user_id])
     @chat ||= Chat.find_by(user_opening_chat_id: params[:user_id], user_destination_chat_id: current_user.id)
     return redirect_to @chat if @chat.present?
-    binding.break
 
     @chat = Chat.new(user_opening_chat_id: current_user.id, user_destination_chat_id: params[:user_id])
     respond_to do |format|

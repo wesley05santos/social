@@ -1,18 +1,10 @@
 <div id="<%= dom_id chat_message %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">User send message:</strong>
-    <%= chat_message.user_send_message.email %>
+    <strong class="block font-medium mb-1">User send message: <%= chat_message.user_send_message.email %> | <%= chat_message.created_at.strftime('%d-%m-%Y - %H:%M') %></strong>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Message:</strong>
     <%= chat_message.message %>
   </p>
-
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this chat message", chat_message, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this chat message", edit_chat_message_path(chat_message), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>

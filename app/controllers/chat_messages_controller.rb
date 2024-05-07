@@ -25,6 +25,16 @@ class ChatMessagesController < ApplicationController
 
     respond_to do |format|
       if @chat_message.save
+        Turbo::StreamsChannel.broadcast_action_to(
+          "chat_messages_channel_#{@chat_message.chat_id}",
+          action: :prepend,
+          target: 'all_messages',
+          partial: 'chat_messages/chat_message',
+          locals: {
+            chat_message: @chat_message
+          }
+        )
+        format.turbo_stream {}
         format.html { redirect_to @chat_message.chat, notice: "Chat message was successfully created." }
         format.json { render :show, status: :created, location: @chat_message }
       else
