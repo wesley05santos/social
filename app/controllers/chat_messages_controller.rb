@@ -67,6 +67,16 @@ class ChatMessagesController < ApplicationController
     end
   end
 
+  def load_more_messages
+    @number_messages_loaded = params[:number_messages_loaded].to_i
+    @chat_id = params[:chat_id]
+    @chat = Chat.find(@chat_id)
+    @chat_messages = @chat.chat_messages.order(created_at: :desc).offset(@number_messages_loaded).limit(3)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chat_message

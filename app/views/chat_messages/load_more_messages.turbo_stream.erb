@@ -1,0 +1,11 @@
+<%= turbo_stream.remove 'link_load_more' %>
+
+<%= turbo_stream.append 'all_messages' do %>
+  <% @chat_messages.each do |chat_message| %>
+    <%= render "chat_messages/chat_message", chat_message: chat_message %>
+  <% end %>
+
+  <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: @number_messages_loaded + 3), id: "link_load_more", data: { turbo_method: :put } %>
+<% end %>
+
+
