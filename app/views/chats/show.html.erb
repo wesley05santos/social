@@ -1,17 +1,18 @@
-  <div class="mx-auto md:w-2/3 w-full flex">
-    <div class="mx-auto">
-      <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <%= turbo_stream_from "chat_messages_channel_#{@chat.id}" %>
+    <%= render @chat %>
+    <%= render  "chat_messages/form", chat_message: @chat.chat_messages.new() %>
+    <div id="all_messages" class="min-w-full" style="overflow:auto; height: 500px; width: 600px">
+      <% @chat.chat_messages.order(created_at: :desc).where.not(id: nil).limit(3).each do |chat_message| %>
+        <%= render  "chat_messages/chat_message", chat_message: chat_message %>
       <% end %>
-      <%= turbo_stream_from "chat_messages_channel_#{@chat.id}" %>
-      <%= render @chat %>
-      <%= render  "chat_messages/form", chat_message: @chat.chat_messages.new() %>
-      <div id="all_messages" class="min-w-full" style="overflow:auto; height: 500px;">
-        <% @chat.chat_messages.order(created_at: :desc).where.not(id: nil).limit(3).each do |chat_message| %>
-          <%= render  "chat_messages/chat_message", chat_message: chat_message %>
-        <% end %>
-        <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: 3), id: "link_load_more", data: { turbo_method: :put } %>
-      </div>
-      <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: 3), id: "link_load_more", data: { turbo_method: :put }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
     </div>
+    <%= link_to "Back to chats", chats_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
+</div>
+

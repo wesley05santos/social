@@ -5,7 +5,7 @@
     <%= render "chat_messages/chat_message", chat_message: chat_message %>
   <% end %>
 
-  <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: @number_messages_loaded + 3), id: "link_load_more", data: { turbo_method: :put } %>
+  <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: @number_messages_loaded + 3), id: "link_load_more", data: { turbo_method: :put }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 <% end %>
 
 
