@@ -2,7 +2,9 @@
 
 <%= turbo_stream.append 'all_messages' do %>
   <% @chat_messages.each do |chat_message| %>
-    <%= render "chat_messages/chat_message", chat_message: chat_message %>
+    <% justify_position = chat_message.user_send_message.email == current_user.email ? 'justify-end' : '' %>
+    <% text_align = chat_message.user_send_message.email == current_user.email ? 'text-align: right;' : ''%>
+    <%= render "chat_messages/chat_message", chat_message: chat_message, justify_position: justify_position, text_align: text_align %>
   <% end %>
 
   <%= link_to  "More messages...", load_more_messages_path(chat_id: @chat.id, number_messages_loaded: @number_messages_loaded + 3), id: "link_load_more", data: { turbo_method: :put }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

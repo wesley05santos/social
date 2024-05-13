@@ -22,6 +22,8 @@ class ChatMessagesController < ApplicationController
   # POST /chat_messages or /chat_messages.json
   def create
     @chat_message = ChatMessage.new(chat_message_params)
+    justify_position = @chat_message.user_send_message.email == current_user.email ? 'justify-end' : ''
+    text_align = @chat_message.user_send_message.email == current_user.email ? 'text-align: right;' : ''
 
     respond_to do |format|
       if @chat_message.save
@@ -31,7 +33,9 @@ class ChatMessagesController < ApplicationController
           target: 'all_messages',
           partial: 'chat_messages/chat_message',
           locals: {
-            chat_message: @chat_message
+            chat_message: @chat_message,
+            justify_position: justify_position,
+            text_align: text_align
           }
         )
         format.turbo_stream {}

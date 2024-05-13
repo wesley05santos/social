@@ -1,14 +1,19 @@
+<% if action_name == 'show' %>
+  <% justify_position = chat_message.user_send_message.email == current_user.email ? 'justify-end' : '' %>
+  <% text_align = chat_message.user_send_message.email == current_user.email ? 'text-align: right;' : '' %>
+<% end %>
 <div id="<%= dom_id chat_message %>">
-  <div class="flex items-start gap-2.5">
-    <div class="flex flex-col w-full max-w-[320px] leading-1.5">
-      <div class="flex items-center space-x-2 rtl:space-x-reverse">
+  <div class="flex <%= justify_position %> gap-2.5">
+    <div class="flex flex-col w-full leading-1.5">
+      <div class="flex <%= justify_position %> items-center space-x-2 rtl:space-x-reverse">
         <p>
           <span class="text-sm font-semibold text-gray-900 dark:text-white"><%= chat_message.user_send_message.email %></span>
           <span class="text-sm font-normal text-gray-500 dark:text-gray-400"><%= chat_message.created_at.strftime('%d-%m-%Y  %H:%M') %></span>
         </p>
       </div>
-      <p class="text-sm font-normal py-2 text-gray-900 dark:text-white"><%= chat_message.message %></p>
+      <p class="text-sm font-normal py-2 text-gray-900 dark:text-white" style="<%= text_align %>"><%= chat_message.message %></p>
       <hr>
     </div>
   </div>
 </div>
+
