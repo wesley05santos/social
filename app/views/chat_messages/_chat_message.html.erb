@@ -3,6 +3,9 @@
   <% text_align = chat_message.user_send_message.email == current_user.email ? 'text-align: right;' : '' %>
 <% end %>
 <div id="<%= dom_id chat_message %>">
+  <span id="user_send_message", style="display: none;">
+    <%= batata if defined?(batata) %>
+  </span>
   <div class="flex <%= justify_position %> gap-2.5">
     <div class="flex flex-col w-full leading-1.5">
       <div class="flex <%= justify_position %> items-center space-x-2 rtl:space-x-reverse">
@@ -16,4 +19,9 @@
     </div>
   </div>
 </div>
+<script>
+  var current_user = document.getElementById("current_user_id").innerText
+  var user_send_message = document.getElementById("user_send_message").innerText
+</script>
+
 
