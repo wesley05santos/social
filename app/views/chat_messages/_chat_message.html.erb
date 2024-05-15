@@ -3,25 +3,41 @@
   <% text_align = chat_message.user_send_message.email == current_user.email ? 'text-align: right;' : '' %>
 <% end %>
 <div id="<%= dom_id chat_message %>">
-  <span id="user_send_message", style="display: none;">
-    <%= batata if defined?(batata) %>
+  <span id="user_send_message<%= chat_message.id %>", style="display: none;">
+    <%= chat_message.user_send_message_id %>
   </span>
-  <div class="flex <%= justify_position %> gap-2.5">
+  <div id="header_message_style<%= chat_message.id %>" class="flex <%= justify_position %> gap-2.5">
     <div class="flex flex-col w-full leading-1.5">
-      <div class="flex <%= justify_position %> items-center space-x-2 rtl:space-x-reverse">
+      <div id="header_message_style_sublevel<%= chat_message.id %>" class="flex <%= justify_position %> items-center space-x-2 rtl:space-x-reverse">
         <p>
           <span class="text-sm font-semibold text-gray-900 dark:text-white"><%= chat_message.user_send_message.email %></span>
           <span class="text-sm font-normal text-gray-500 dark:text-gray-400"><%= chat_message.created_at.strftime('%d-%m-%Y  %H:%M') %></span>
         </p>
       </div>
-      <p class="text-sm font-normal py-2 text-gray-900 dark:text-white" style="<%= text_align %>"><%= chat_message.message %></p>
+      <p id="message_style<%= chat_message.id %>" class="text-sm font-normal py-2 text-gray-900 dark:text-white" style="<%= text_align %>"><%= chat_message.message %></p>
       <hr>
     </div>
   </div>
 </div>
 <script>
-  var current_user = document.getElementById("current_user_id").innerText
-  var user_send_message = document.getElementById("user_send_message").innerText
+  var current_user = document.getElementById("current_user_id").innerText.trim()
+  var user_send_message = document.getElementById("user_send_message<%= chat_message.id %>").innerText.trim()
+
+  var element_header = document.getElementById("header_message_style<%= chat_message.id %>")
+  var element_header_sublevel = document.getElementById("header_message_style_sublevel<%= chat_message.id %>")
+  var element_message = document.getElementById("message_style<%= chat_message.id %>")
+
+
+  if (current_user === user_send_message) {
+    console.log("Igual")
+  } else {
+    console.log("Diferente")
+    element_header.classList.add("justify-start")
+    element_header.classList.remove("justify-end")
+    element_header_sublevel.classList.add("justify-start")
+    element_header_sublevel.classList.remove("justify-end")
+    element_message.style.textAlign = "left"
+  }
 </script>
 
 
