@@ -35,8 +35,7 @@ class ChatMessagesController < ApplicationController
           locals: {
             chat_message: @chat_message,
             justify_position: justify_position,
-            text_align: text_align,
-            batata: current_user.id
+            text_align: text_align
           }
         )
         format.turbo_stream {}

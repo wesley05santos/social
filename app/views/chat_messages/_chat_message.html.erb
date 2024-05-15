@@ -28,9 +28,7 @@
   var element_message = document.getElementById("message_style<%= chat_message.id %>")
 
 
-  if (current_user === user_send_message) {
-    console.log("Igual")
-  } else {
+  if (current_user !== user_send_message) {
     console.log("Diferente")
     element_header.classList.add("justify-start")
     element_header.classList.remove("justify-end")
