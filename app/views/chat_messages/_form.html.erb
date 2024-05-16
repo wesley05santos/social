@@ -13,13 +13,14 @@
 
   <%= form.hidden_field :chat_id, value: chat_message.chat_id %>
 
-  <div class="my-5">
-    <%= form.label :message %>
+  <%= form.label :message %>
+
+  <div class="my-5 flex flex-auto">
     <%= form.text_field :message, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.submit "⮚", class: "rounded-lg py-3 px-5 mt-2 ml-2 bg-blue-600 text-white flex items-center font-medium cursor-pointer" %>
   </div>
 
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="inline" >
   </div>
 <% end %>

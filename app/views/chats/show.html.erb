@@ -6,7 +6,7 @@
     <%= turbo_stream_from "chat_messages_channel_#{@chat.id}" %>
     <%= render @chat %>
     <%= render  "chat_messages/form", chat_message: @chat.chat_messages.new() %>
-    <div id="all_messages" class="min-w-full" style="overflow:auto; height: 500px; width: 600px">
+    <div id="all_messages" class="min-w-full" style="overflow:auto; height: 300px; width: 600px;">
       <% @chat.chat_messages.order(created_at: :desc).where.not(id: nil).limit(3).each do |chat_message| %>
         <%= render  "chat_messages/chat_message", chat_message: chat_message %>
       <% end %>
