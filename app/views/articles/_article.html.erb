@@ -8,6 +8,12 @@
     <strong class="block font-medium mb-1">Content:</strong>
     <%= article.content %>
   </p>
+  <% if article.photo.attached? %>
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Photo:</strong>
+      <%= image_tag(article.photo, style: "width: 200px; max-height: 200px;") %>
+    </p>
+  <% end %>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">User:</strong>
