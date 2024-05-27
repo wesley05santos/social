@@ -9,6 +9,7 @@
   <% if @enable_link_logout %>
     <div style="width: 200px; position: fixed; float: left; display: block">
       <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" %>
     </div>
   <% end %>
 </div>

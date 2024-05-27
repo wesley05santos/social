@@ -18,4 +18,8 @@ class UsersController < ApplicationController
   def fetch_user
     @target_user = User.find(params[:user_id])
   end
+
+  def user_params
+    params.require(:chat).permit(:photo)
+  end
 end

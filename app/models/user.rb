@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :articles
+  has_one_attached :photo
 
   #Os que eu sigo
   has_many :followerships, class_name: 'Followership', foreign_key: 'user_id'
