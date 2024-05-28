@@ -26,11 +26,11 @@
               <%= form.submit "🔍" %>
             <% end %>
           </li>
-          <li>
+          <li style="display: flex; justify-content: right; min-width: 300px;">
+            <div style="width: 30px; height: 30px;">
+              <%= image_tag(url_for(current_user.photo), style: "border-radius: 100%;") %>
+            </div>
             <%= link_to link_logout_path(enable_link_logout: !!@enable_link_logout), data: { turbo_method: :post }, id: 'link_logout' do %>
-              <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                <img class="w-8 h-8 rounded-full" src="<%= current_user.photo %>" alt="user photo">
-              </button>
               <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"><%= current_user.email %>
                 <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
