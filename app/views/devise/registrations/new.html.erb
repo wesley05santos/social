@@ -22,8 +22,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :cpf %><br />
-    <%= f.text_field :cpf %>
+    <%= f.label :cpf %>
+    <span data-controller='cpf-field'>
+      <span data-cpf-field-target="preview">
+        .....
+      </span>
+      <br />
+      <%= f.text_field :cpf, data: { action: 'input->cpf-field#fetch_input' } %>
+    </span>
   </div>
 
   <div class="my-5">
