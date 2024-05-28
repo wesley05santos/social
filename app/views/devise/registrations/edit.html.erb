@@ -37,6 +37,17 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :cpf %>
+    <span data-controller='cpf-field'>
+      <span data-cpf-field-target="preview">
+        .....
+      </span>
+      <br />
+      <%= f.text_field :cpf, data: { action: 'input->cpf-field#fetch_input' } %>
+    </span>
+  </div>
+
   <div class="my-5">
     <%= f.label :photo %>
     <%= f.file_field :photo, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
