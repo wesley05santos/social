@@ -44,7 +44,7 @@
         .....
       </span>
       <br />
-      <%= f.text_field :cpf, data: { action: 'input->cpf-field#fetch_input' } %>
+      <%= f.text_field :cpf, data: { action: 'input->cpf-field#fetch_input' }, maxlength: 11 %>
     </span>
   </div>
 
