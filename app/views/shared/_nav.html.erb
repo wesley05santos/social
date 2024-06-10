@@ -18,8 +18,12 @@
           </li>
           <li>
             <%= form_with url: search_article_path, method: :get do |form| %>
-              <%= form.text_field :query, placeholder: 'Title and Content Article.....' %>
-              <%= form.submit "🔍" %>
+              <%= form.text_field :query, placeholder: 'Title and Content Article.....',
+                data: {
+                  controller: 'search-article',
+                  action: 'input->search-article#fetch_input'
+                }
+              %> 🔍
             <% end %>
           </li>
           <li>
@@ -36,11 +40,12 @@
                 </svg>
               </button>
             <% end %>
-          <li>
-            <%= form_with url: search_user_path, method: :get do |form| %>
-              <%= form.text_field :query, placeholder: 'somebody@.....' %> 🔍
-            <% end %>
-          </li>
+            <li>
+              <%= form_with url: search_user_path, method: :get do |form| %>
+                <%= form.text_field :query, placeholder: 'somebody@.....' %>
+                <%= form.submit "🔍" %>
+              <% end %>
+            </li>
 
             <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
               <div class="py-1">

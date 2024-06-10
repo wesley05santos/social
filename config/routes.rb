@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'search_user', to: 'search#search_user'
   get 'search_article', to: 'search#search_article'
+  get 'http:/localhost:3000/search_article', to: 'search#search_article'
+
   post 'link_logout', to: 'home#link_logout'
   put 'load_more_messages', to: 'chat_messages#load_more_messages'
   post 'follow', to: 'users#follow'
@@ -20,3 +22,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
+
