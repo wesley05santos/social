@@ -1,15 +1,21 @@
 import { Controller } from "@hotwired/stimulus"
+import { useDebounce } from 'stimulus-use'
+
 
 export default class extends Controller {
-  // connect() {
-  // }
+  static debounces = ['fetch_input']
 
-  fetch_input(event) {
+  connect() {
+    useDebounce(this, { wait: 750 })
+  }
+
+  fetch_input() {
     const value = this.element.value
 
     fetch(`http://localhost:3000/search_article?query=${value}`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       const list = document.getElementById('all_articles');
       list.innerHTML = ''
       data.forEach((item)=>{
@@ -22,8 +28,6 @@ export default class extends Controller {
         span.appendChild(lineBreak);
         list.appendChild(span);
       })
-
-      // debugger
     })
   }
 }
