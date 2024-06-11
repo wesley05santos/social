@@ -17,6 +17,11 @@ class Api::V1::ArticlesController < ActionController::API
     render json: @article, status: :ok if @article.update(article_params)
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    render json: { message: 'Successfully Destroyed' }, status: :ok if @article.destroy!
+  end
+
   private
 
   def fetch_article

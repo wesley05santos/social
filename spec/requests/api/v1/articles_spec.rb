@@ -39,4 +39,11 @@ RSpec.describe '/api/v1/articles' do
       expect(response.body).to include('Science document')
     end
   end
+
+  context 'DELETE :destroy' do
+    it 'Return Message Destroyed Article' do
+      delete api_v1_article_path(article.id)
+      expect(response.body).to include('Successfully Destroyed')
+    end
+  end
 end
