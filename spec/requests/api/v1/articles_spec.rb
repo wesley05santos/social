@@ -26,4 +26,17 @@ RSpec.describe '/api/v1/articles' do
       expect(response.body).to include('Science document')
     end
   end
+
+  context 'PUT :update' do
+    it 'Return Updated Article' do
+      put api_v1_article_path(article.id), params: {
+        article: {
+          title: 'Science document',
+          content: 'The life of the king of the jungle',
+          user_id: user.id
+        }
+      }
+      expect(response.body).to include('Science document')
+    end
+  end
 end
