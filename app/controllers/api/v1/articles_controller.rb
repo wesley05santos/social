@@ -3,7 +3,15 @@ class Api::V1::ArticlesController < ActionController::API
 
   def index
     @articles = Article.all
-    render json: @articles, status: :ok
+    # title, content, created_at (xx/xx/xxxx), user.email,
+    # render json: @articles, status: :ok
+    render json: @articles.map{ |article| {
+      title: article.title,
+      content: article.content,
+      user_email: article.user.email,
+      created_at: article.created_at.strftime("%d/%m/%Y")
+      }
+    }, status: :ok
   end
 
   def create
