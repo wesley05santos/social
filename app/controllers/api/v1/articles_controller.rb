@@ -5,24 +5,22 @@ class Api::V1::ArticlesController < ActionController::API
     @articles = Article.all
     # title, content, created_at (xx/xx/xxxx), user.email,
     # render json: @articles, status: :ok
-    render json: @articles.map{ |article| {
-      title: article.title,
-      content: article.content,
-      user_email: article.user.email,
-      created_at: article.created_at.strftime("%d/%m/%Y")
-      }
-    }, status: :ok
+    # render json: @articles.map{ |article| {
+    #   title: article.title,
+    #   content: article.content,
+    #   user_email: article.user.email,
+    #   created_at: article.created_at.strftime("%d/%m/%Y")
+    #   }
+    # }, status: :ok
   end
 
   def create
-    @article = Article.new(article_params)
-
-    render json: @article, status: :ok if @article.save
+    @article = Article.create(article_params)
   end
 
   def update
     @article = Article.find(params[:id])
-    render json: @article, status: :ok if @article.update(article_params)
+    @article.update(article_params)
   end
 
   def destroy
