@@ -16,7 +16,7 @@ RSpec.describe '/api/v1/articles' do
       expected_result = {
         title: 'Batata',
         content: 'Legume',
-        created_at: '13/06/2024',
+        created_at: DateTime.current.strftime("%d/%m/%Y"),
         user: {
           email: user.email
         }
@@ -38,7 +38,7 @@ RSpec.describe '/api/v1/articles' do
       expected_result = {
         title: "Science",
         content: "The king Lion",
-        created_at: '13/06/2024',
+        created_at: DateTime.current.strftime("%d/%m/%Y"),
         user: {
           email: user.email
         }
@@ -60,7 +60,7 @@ RSpec.describe '/api/v1/articles' do
       expected_result = {
         title: "Science",
         content: "The king Lion",
-        created_at: '13/06/2024',
+        created_at: DateTime.current.strftime("%d/%m/%Y"),
         user: {
           email: user.email
         }
