@@ -2,14 +2,17 @@ class Api::V1::ArticlesController < ActionController::API
   # before_action :fetch_article, only: %i[ update destroy ]
 
   def index
+    @articles_pagination_data = Article.paginate(params)
     # @articles = Article.all
-    @per_page = 5
-    @total_pages = (Article.count.to_f / @per_page).ceil
-    @current_page = (params[:current_page] || 1).to_i
-    @current_page = 1 if params[:current_page].to_i > @total_pages
-    @articles = Article.all
-      .offset((@current_page - 1) * @per_page)
-      .limit(@per_page)
+
+    # @per_page = 5
+    # @total_pages = (Article.count.to_f / @per_page).ceil
+    # @current_page = (params[:current_page] || 1).to_i
+    # @current_page = 1 if params[:current_page].to_i > @total_pages
+    # @articles = Article.all
+    #   .offset((@current_page - 1) * @per_page)
+    #   .limit(@per_page)
+
     # respond_to do |format|
     #   format.json
     # end

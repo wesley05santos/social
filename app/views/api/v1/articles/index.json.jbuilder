@@ -1,7 +1,7 @@
-json.current_page     @current_page
-json.per_page         @per_page
-json.total_pages      @total_pages
-json.data @articles do |article|
+json.current_page     @articles_pagination_data[:current_page]
+json.per_page         @articles_pagination_data[:per_page]
+json.total_pages      @articles_pagination_data[:total_pages]
+json.data @articles_pagination_data[:objects] do |article|
   json.title          article.title
   json.content        article.content
   json.created_at     article.created_at.strftime("%d/%m/%Y")
