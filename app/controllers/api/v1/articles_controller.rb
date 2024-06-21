@@ -1,5 +1,5 @@
-class Api::V1::ArticlesController < ActionController::API
-  # before_action :fetch_article, only: %i[ update destroy ]
+class Api::V1::ArticlesController < Api::V1::ApplicationController
+  before_action :fetch_article, only: %i[ update destroy ]
 
   def index
     @articles_pagination_data = Article.paginate(params)
@@ -32,12 +32,10 @@ class Api::V1::ArticlesController < ActionController::API
   end
 
   def update
-    @article = Article.find(params[:id])
     @article.update(article_params)
   end
 
   def destroy
-    @article = Article.find(params[:id])
     render json: { message: 'Successfully Destroyed' }, status: :ok if @article.destroy!
   end
 
