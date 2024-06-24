@@ -5,6 +5,13 @@ class Api::V1::ApplicationController < ActionController::API
   private
 
   def authorize_user
-    return render json: {}, status: :unauthorized unless authenticate_with_http_basic { |user, password| User.find_by(email: user).valid_password?(password) }
+    section = session[:section]
+    fetch_user if section
+    return render json: {}, status: :unauthorized unless @user || authenticate_with_http_basic { |user, password| @user = User.find_by(email: user); @user.valid_password?(password) }
+
+  end
+
+  def fetch_user
+    @user = User.where(section: session[:section]).first
   end
 end
