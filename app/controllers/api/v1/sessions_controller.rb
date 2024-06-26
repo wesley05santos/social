@@ -5,9 +5,10 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
     render json: {section: @user.section}
   end
 
-  def logout
+  def destroy
     @user.update(section: nil, section_expire: nil)
     @user = nil
     session[:section] = nil
+    render json: {message: "Logout successfully"}
   end
 end
