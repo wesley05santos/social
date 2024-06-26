@@ -4,4 +4,10 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
     session[:section] = @user.section
     render json: {section: @user.section}
   end
+
+  def logout
+    @user.update(section: nil, section_expire: nil)
+    @user = nil
+    session[:section] = nil
+  end
 end

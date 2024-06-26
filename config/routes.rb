@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :articles
       resources :chats
       post 'login', to: 'sessions#create'
+      post 'logout', to: 'sessions#logout'
     end
   end
 end
