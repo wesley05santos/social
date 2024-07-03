@@ -14,4 +14,8 @@ class User < ApplicationRecord
   #Os que me seguem
   has_many :inverse_followerships, class_name: 'Followership', foreign_key: 'following_id'
   has_many :followers, -> { distinct }, through: :inverse_followerships, class_name: 'User', source: :user
+
+  def authenticate!
+    self.update(section: SecureRandom.uuid, section_expire: Time.current + Section::DEFAULT_EXPIRATION)
+  end
 end

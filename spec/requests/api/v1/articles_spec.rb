@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe '/api/v1/articles' do
   let(:user){ User.create(email: 'teste@teste.com', password: '123456') }
   let!(:article){ Article.create(title: 'Batata', content: 'Legume', user: user) }
+  before(:each){ sign_in(user) }
 
   context 'GET :index' do
     it 'Renders a successfull response' do

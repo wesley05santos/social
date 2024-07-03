@@ -4,6 +4,7 @@ RSpec.describe '/api/v1/chats' do
   let(:user_sender){ User.create(email: 'teste@teste.com', password: '123456') }
   let(:user_destination){ User.create(email: 'teste2@teste.com', password: '123456') }
   let!(:chat){ Chat.create(user_opening_chat: user_sender, user_destination_chat: user_destination) }
+  before(:each){ sign_in(user_sender) }
 
   context 'GET :index' do
     it 'Renders a successfull response' do
