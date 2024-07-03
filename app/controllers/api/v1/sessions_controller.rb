@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < Api::V1::ApplicationController
   def create
+    binding.break
     @user.authenticate! if @user.section.nil?
     session[:section] = @user.section
     render json: {message: "Login successfully"}
