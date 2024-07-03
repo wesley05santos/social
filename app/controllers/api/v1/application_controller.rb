@@ -5,7 +5,6 @@ class Api::V1::ApplicationController < ActionController::API
   private
 
   def authorize_user
-    binding.break
     fetch_user && check_section_expiration if session[:section]
     return render json: {}, status: :unauthorized unless @user || authenticate_with_http_basic { |user, password| @user = User.find_by(email: user); @user.valid_password?(password) }
 

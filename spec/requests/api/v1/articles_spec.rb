@@ -7,9 +7,16 @@ RSpec.describe '/api/v1/articles' do
 
   context 'Login' do
     it 'Login succesfully' do
-      # request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user.email, user.password)
       post api_v1_login_path, headers: { 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials(user.email, user.password) }
       expect(response).to be_successful
+    end
+  end
+
+  context 'Logout' do
+    it 'Logout succesfully', signed_in: true do
+      delete api_v1_logout_path(user)
+      expect(response).to be_successful
+      expect(response.body).to eq({message: 'Logout successfully'}.to_json)
     end
   end
 
